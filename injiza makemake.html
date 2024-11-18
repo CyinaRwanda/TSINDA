@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        <"INJIZA MAKEMAKE RWANDA">
+        </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+    }
+    
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    label {
+        text-align: left;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    
+    input {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    button {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    #errorMessage {
+        color: red;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    
+        </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="errorMessage"></p>
+    </div>
+
+    <script src="script.js">
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Clear previous error message
+    document.getElementById("errorMessage").innerHTML = "";
+
+    // Get form input values
+    const email = document.getElementById("email").value;
+    const contact = document.getElementById("contact").value;
+    const password = document.getElementById("password").value;
+
+    // Simple validation checks
+    if (!email || !contact || !password) {
+        document.getElementById("errorMessage").innerHTML = "All fields are required!";
+        return;
+    }
+
+    // Email validation regex (basic)
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById("errorMessage").innerHTML = "Please enter a valid email address!";
+        return;
+    }
+
+    // Contact number validation (basic)
+    const contactPattern = /^[0-9]{10}$/;
+    if (!contactPattern.test(contact)) {
+        document.getElementById("errorMessage").innerHTML = "Please enter a valid 10-digit contact number!";
+        return;
+    }
+
+    // Password validation (basic)
+    if (password.length < 6) {
+        document.getElementById("errorMessage").innerHTML = "Password must be at least 6 characters!";
+        return;
+    }
+
+    // If validation passes, show success message
+    alert("Login Successful!");
+});
+
+    </script>
+</body>
+</html>
